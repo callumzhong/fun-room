@@ -1,0 +1,19 @@
+.top {
+  transition: margin 0.15s ease 0.2s, transform 0.15s ease;
+}
+
+.bottom {
+  transition: margin 0.15s ease 0.2s, transform 0.15s ease;
+}
+
+.collapsed .top {
+  transition: margin 0.15s ease, transform 0.15s ease 0.2s;
+  @apply mt-0 rotate-45;
+}
+.collapsed .middle {
+  @apply opacity-0;
+}
+.collapsed .bottom {
+  transition: margin 0.15s ease, transform 0.15s ease 0.2s;
+  @apply mt-0 -rotate-45;
+}
