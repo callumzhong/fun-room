@@ -9,4 +9,6 @@ declare module '*.jpg' {
 }
 declare module '*.module.css'
 declare module 'photoswipe/lightbox'
+declare module '@wojtekmaj/react-daterange-picker/dist/entry.nostyle.js'
+
 /// <reference types="vite/client" />

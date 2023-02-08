@@ -9,10 +9,10 @@ const Header = () => {
   const collapsedHandler = () => {
     setIsCollapsed((value) => !value)
   }
-  
+
   return (
-    <header className="fixed z-20 backdrop-blur-[0.3281rem] inset-x-0 px-4 pt-[0.625rem] pb-3 bg-white bg-opacity-[.62]">
-      <nav className="flex flex-wrap justify-between">
+    <header className="fixed backdrop-blur-[0.3281rem] inset-x-0 px-4 pt-[0.625rem] pb-3 bg-white bg-opacity-[.62] z-10">
+      <nav className="flex flex-wrap justify-between container mx-auto">
         <h1 className="relative">
           <Link
             to="/"
@@ -66,7 +66,7 @@ const Header = () => {
           <li>
             <Link
               className="group block sm:w-[6.25rem]"
-              to="/room?query=deluxe-double-">
+              to="/room?query=deluxe-double">
               <p className="group-hover:hidden">Deluxe Double Room</p>
               <p className="hidden group-hover:block whitespace-nowrap">
                 豪華雙人房

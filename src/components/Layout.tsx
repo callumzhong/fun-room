@@ -5,7 +5,7 @@ const Layout = () => {
   return (
     <>
       <Header />
-      <main className="relative pb-8">
+      <main className="relative">
         <Outlet />
       </main>
       <Footer />

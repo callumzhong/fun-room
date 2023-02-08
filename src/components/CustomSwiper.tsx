@@ -28,7 +28,7 @@ const Buttons = ({
       )}>
       <button
         className={clsx(
-          'bg-white md:rotate-0 h-6 w-6 md:h-[1.9081rem] md:w-[1.9081rem] rounded-full hover:bg-black hover:text-white',
+          'h-6 w-6 rounded-full bg-white hover:bg-black hover:text-white md:h-[1.9081rem] md:w-[1.9081rem] md:rotate-0',
           buttonLeftClassName
         )}
         onClick={onSlidePrev}>
@@ -39,7 +39,7 @@ const Buttons = ({
           <div
             key={idx}
             className={clsx(
-              'w-[0.375rem] h-[0.375rem] bg-white rounded-full',
+              'h-[0.375rem] w-[0.375rem] rounded-full bg-white',
               activeIndex === idx && 'bg-black'
             )}
           />
@@ -47,7 +47,7 @@ const Buttons = ({
       })}
       <button
         className={clsx(
-          'bg-white md:rotate-0 h-6 w-6 md:h-[1.9081rem] md:w-[1.9081rem] rounded-full hover:text-white hover:bg-black',
+          'h-6 w-6 rounded-full bg-white hover:bg-black hover:text-white md:h-[1.9081rem] md:w-[1.9081rem] md:rotate-0',
           buttonRightClassName
         )}
         onClick={onSlideNext}>
@@ -90,8 +90,8 @@ const CustomSwiper = ({
         onSwiper={(swiper) => {
           swiperRef.current = swiper
         }}>
-        {images.map((image) => (
-          <SwiperSlide>
+        {images.map((image, idx) => (
+          <SwiperSlide key={idx}>
             <img src={image} className={imagesClassName} alt="" />
           </SwiperSlide>
         ))}

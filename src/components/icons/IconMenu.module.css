@@ -17,3 +17,7 @@
   transition: margin 0.15s ease, transform 0.15s ease 0.2s;
   @apply mt-0 -rotate-45;
 }
+
+.collapsed * {
+  border-radius: 8px;
+}

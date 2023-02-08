@@ -68,7 +68,9 @@ const Hero = () => {
             src="https://source.unsplash.com/random"
             alt=""
           />
-          <Card className="absolute z-10 top-[17.84vh] right-[7vw] sm:right-auto sm:left-[6.375rem]">
+          <Card
+            mode="blur"
+            className="absolute z-10 top-[17.84vh] right-[7vw] sm:right-auto sm:left-[6.375rem]">
             <h4 className="text-4xl italic text-white sm:text-7xl">05</h4>
             <h3 className="text-2xl sm:text-5xl">Twin Room</h3>
             <p className="text-[0.625rem] text-[#3E3E3E] mb-3 sm:text-sm sm:py-4">
