@@ -11,18 +11,18 @@ const Header = () => {
   }
 
   return (
-    <header className="fixed backdrop-blur-[0.3281rem] inset-x-0 px-4 pt-[0.625rem] pb-3 bg-white bg-opacity-[.62] z-10">
-      <nav className="flex flex-wrap justify-between container mx-auto">
+    <header className="fixed inset-x-0 z-10 bg-white bg-opacity-[.62] px-4 pt-[0.625rem] pb-3 backdrop-blur-[0.3281rem]">
+      <nav className="container mx-auto flex flex-wrap justify-between">
         <h1 className="relative">
           <Link
             to="/"
-            className="absolute inset-0 text-transparent text-[0.25rem]">
+            className="absolute inset-0 text-[0.25rem] text-transparent">
             FunRoom
           </Link>
-          <ImageLogo className="h-[2.1563rem] w-[3.7813rem] sm:w-[7.5625rem] sm:h-[4.3125rem]" />
+          <ImageLogo className="h-[2.1563rem] w-[3.7813rem] sm:h-[4.3125rem] sm:w-[7.5625rem]" />
         </h1>
         <label
-          className="px-2 py-1 cursor-pointer sm:hidden"
+          className="cursor-pointer px-2 py-1 sm:hidden"
           htmlFor={menuId}
           onClick={collapsedHandler}>
           <IconMenu isCollapsed={isCollapsed} />
@@ -32,61 +32,55 @@ const Header = () => {
           id={menuId}
           type="checkbox"
         />
-        <ul className="h-0 py-0 peer-checked:h-[15rem] ease-in-out duration-150 overflow-hidden flex flex-col justify-center gap-[0.9375rem] items-center basis-full sm:flex-row sm:h-auto sm:basis-auto text-center sm:gap-12">
-          <li>
-            <Link
-              className="group block sm:w-[2.9375rem]"
-              to="/room?query=single">
+        <ul className="flex h-0 basis-full flex-col gap-[0.9375rem] overflow-hidden py-0 duration-150 ease-in-out peer-checked:h-[15rem] sm:h-auto sm:basis-auto sm:flex-row sm:gap-12">
+          <li className="group flex h-full items-center justify-center">
+            <Link className="block sm:w-[2.9375rem]" to="/room?query=single">
               <p className="group-hover:hidden">Single Room</p>
-              <p className="hidden group-hover:block whitespace-nowrap">
+              <p className="hidden whitespace-nowrap group-hover:block">
                 單人房
               </p>
             </Link>
           </li>
-          <li>
+          <li className="group flex h-full items-center justify-center">
             <Link
-              className="group block sm:w-[5.875rem]"
+              className="block sm:w-[5.875rem]"
               to="/room?query=deluxe-single">
               <p className="group-hover:hidden">Deluxe Single Room</p>
-              <p className="hidden group-hover:block whitespace-nowrap">
+              <p className="hidden whitespace-nowrap group-hover:block">
                 豪華單人房
               </p>
             </Link>
           </li>
-          <li>
-            <Link
-              className="group block sm:w-[3.0625rem]"
-              to="/room?query=double">
+          <li className="group flex h-full items-center justify-center">
+            <Link className="block sm:w-[3.0625rem]" to="/room?query=double">
               <p className="group-hover:hidden">Double Room</p>
-              <p className="hidden group-hover:block whitespace-nowrap">
+              <p className="hidden whitespace-nowrap group-hover:block">
                 雙人房
               </p>
             </Link>
           </li>
-          <li>
+          <li className="group flex h-full items-center justify-center">
             <Link
-              className="group block sm:w-[6.25rem]"
+              className="block sm:w-[6.25rem]"
               to="/room?query=deluxe-double">
               <p className="group-hover:hidden">Deluxe Double Room</p>
-              <p className="hidden group-hover:block whitespace-nowrap">
+              <p className="hidden whitespace-nowrap group-hover:block">
                 豪華雙人房
               </p>
             </Link>
           </li>
-          <li>
-            <Link
-              className="group block sm:w-[2.6875rem]"
-              to="/room?query=twin">
+          <li className="group flex h-full items-center justify-center">
+            <Link className="block sm:w-[2.6875rem]" to="/room?query=twin">
               <p className="group-hover:hidden">Twin Room</p>
-              <p className="hidden group-hover:block whitespace-nowrap">
+              <p className="hidden whitespace-nowrap group-hover:block">
                 雙床房
               </p>
             </Link>
           </li>
-          <li>
-            <Link className="group block sm:w-[5rem]" to="/room?query=deluxe">
+          <li className="group flex h-full items-center justify-center">
+            <Link className="block sm:w-[5rem]" to="/room?query=deluxe">
               <p className="group-hover:hidden">Deluxe Twin Room</p>
-              <p className="hidden group-hover:block whitespace-nowrap">
+              <p className="hidden whitespace-nowrap group-hover:block">
                 豪華雙床房
               </p>
             </Link>

@@ -21,12 +21,12 @@ const TABS = [
 ]
 
 const Introduce = () => (
-  <div className="flex flex-col md:flex-row px-8 md:gap-8">
+  <div className="flex flex-col px-8 md:flex-row md:gap-8">
     <section className="w-full md:w-8/12">
       <RoomIntroduce />
     </section>
-    <div className="flex flex-col gap-4 w-full md:w-4/12">
-      <RoomCost className="hidden md:flex md:mt-[7.5rem]" />
+    <div className="flex w-full flex-col gap-4 md:w-4/12">
+      <RoomCost className="hidden md:mt-[7.5rem] md:flex" />
       <RoomForm />
     </div>
   </div>
