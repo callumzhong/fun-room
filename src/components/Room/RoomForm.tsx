@@ -62,5 +62,3 @@ const RoomForm = () => {
 }
 
 export default RoomForm
-
-// Lightning effects

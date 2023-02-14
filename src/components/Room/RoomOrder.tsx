@@ -1,6 +1,5 @@
 import Card from '../Card'
 import Input from '../Input'
-import Modal from '../Modal'
 import DateRangePicker from '@wojtekmaj/react-daterange-picker/dist/entry.nostyle.js'
 import { useState } from 'react'
 
