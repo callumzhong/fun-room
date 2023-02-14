@@ -1,11 +1,11 @@
 import useModal from '@/hooks/useModal'
-import * as ModalLibrary from 'react-modal'
+import Modal from 'react-modal'
 import { IconMenu } from './icons'
 
 // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
-ModalLibrary.setAppElement('#react-modal')
+Modal.setAppElement('#react-modal')
 
-const Modal = ({
+const VariantModal = ({
   label,
   renderButton,
   renderContent
@@ -19,7 +19,7 @@ const Modal = ({
   return (
     <>
       {renderButton(openModalHandler)}
-      <ModalLibrary
+      <Modal
         shouldCloseOnOverlayClick={false}
         isOpen={modalIsOpen}
         overlayClassName="fixed inset-0 bg-black bg-opacity-[0.78] z-20"
@@ -35,9 +35,9 @@ const Modal = ({
           className="group absolute top-0 -right-14 bg-white px-2 py-1 text-4xl hover:bg-gray-800">
           <IconMenu isCollapsed={true} />
         </button>
-      </ModalLibrary>
+      </Modal>
     </>
   )
 }
 
-export default Modal
+export default VariantModal
