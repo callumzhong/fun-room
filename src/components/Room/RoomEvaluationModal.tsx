@@ -1,14 +1,14 @@
 import { IcSharpStarOutline } from '../icons'
-import Modal from '../Modal'
 import RoomEvaluation from './RoomEvaluation'
 import clsx from 'clsx'
+import VariantModal from '../VariantModal'
 const RoomEvaluationModal = ({
   buttonClassName
 }: {
   buttonClassName?: string
 }) => {
   return (
-    <Modal
+    <VariantModal
       label="Evaluation Modal"
       renderButton={(openHander) => (
         <button className={clsx(buttonClassName)} onClick={openHander}>

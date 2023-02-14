@@ -1,7 +1,7 @@
 import Input from '@/components/Input'
 import DateRangePicker from '@wojtekmaj/react-daterange-picker/dist/entry.nostyle.js'
-import { useId, useState } from 'react'
-import Modal from '../Modal'
+import { useState } from 'react'
+import VariantModal from '../VariantModal'
 import RoomOrder from './RoomOrder'
 
 const OrderErrorMessage = () => {
@@ -45,7 +45,7 @@ const RoomForm = () => {
         value={stayDate}
         className="mb-6 h-10 w-full bg-[#EDEDED] text-center"
       />
-      <Modal
+      <VariantModal
         label="room order modal"
         renderButton={(openHandler) => (
           <button
@@ -55,7 +55,7 @@ const RoomForm = () => {
             預定房間
           </button>
         )}
-        renderContent={() => <OrderSuccessMessage />}
+        renderContent={() => <RoomOrder />}
       />
     </form>
   )
