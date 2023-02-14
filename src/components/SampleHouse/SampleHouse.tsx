@@ -1,5 +1,5 @@
 import { Canvas, useFrame } from '@react-three/fiber'
-import { Suspense, useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, lazy } from 'react'
 import {
   Environment,
   Html,
@@ -7,8 +7,16 @@ import {
   CameraControls
 } from '@react-three/drei'
 import * as THREE from 'three'
+import MultiAnglePanel from './MultiAnglePanel'
+import CAMERA_ANGLES from './CAMERA_ANGLES.json'
 import Houses2 from './Houses2'
+
 const { DEG2RAD } = THREE.MathUtils
+
+// const Houses2 = lazy(async () => {
+//   await new Promise((resolve) => setTimeout(resolve, 3000))
+//   return import('./Houses2')
+// })
 
 const Lights = () => {
   return (
@@ -19,72 +27,89 @@ const Lights = () => {
   )
 }
 
-const Loader = () => {
-  const { progress } = useProgress()
-  return <Html center>{progress} % loaded</Html>
+type Annotation = {
+  move: {
+    x: number
+    y: number
+    z: number
+  }
+  azimuthAngle: number
+  polarAngle: number
+  maxAzimuthAngle: number
+  minAzimuthAngle: number
 }
 
-const Scene = () => {
+const Scene = ({
+  annotationIndex,
+  isRedraw
+}: {
+  annotationIndex: number
+  isRedraw: boolean
+}) => {
   const [loaded, setLoaded] = useState(false)
   const cameraControlsRef = useRef<CameraControls | null>(null)
-  const cameraChangeHandler = (num: string) => {
+  const cameraChangeHandler = (annotation: Annotation) => {
     if (cameraControlsRef.current) {
-      switch (num) {
-        case 'load':
-          cameraControlsRef.current.dollyTo(10, true)
-          cameraControlsRef.current.rotateAzimuthTo(30 * DEG2RAD, true)
-          cameraControlsRef.current.rotatePolarTo(80 * DEG2RAD, true)
-
-          break
-        case 'A':
-          cameraControlsRef.current.moveTo(0, 0, 0, true)
-          cameraControlsRef.current.rotateAzimuthTo(30 * DEG2RAD, true)
-          cameraControlsRef.current.rotatePolarTo(80 * DEG2RAD, true)
-          cameraControlsRef.current.maxAzimuthAngle = 80 * DEG2RAD
-          cameraControlsRef.current.minAzimuthAngle = -80 * DEG2RAD
-          break
-        case 'B':
-          cameraControlsRef.current.moveTo(0, 0, -10, true)
-          cameraControlsRef.current.rotateAzimuthTo(160 * DEG2RAD, true)
-          cameraControlsRef.current.rotatePolarTo(60 * DEG2RAD, true)
-          cameraControlsRef.current.maxAzimuthAngle = 200 * DEG2RAD
-          cameraControlsRef.current.minAzimuthAngle = 120 * DEG2RAD
-          break
-        default:
-          break
-      }
+      cameraControlsRef.current.moveTo(
+        annotation.move.x,
+        annotation.move.y,
+        annotation.move.z,
+        true
+      )
+      cameraControlsRef.current.rotateAzimuthTo(
+        annotation.azimuthAngle * DEG2RAD,
+        true
+      )
+      cameraControlsRef.current.rotatePolarTo(
+        annotation.polarAngle * DEG2RAD,
+        true
+      )
+      cameraControlsRef.current.maxAzimuthAngle =
+        annotation.maxAzimuthAngle * DEG2RAD
+      cameraControlsRef.current.minAzimuthAngle =
+        annotation.minAzimuthAngle * DEG2RAD
     }
   }
+  const { progress } = useProgress()
 
   useEffect(() => {
-    setLoaded(true)
-  }, [])
+    if (progress === 100) {
+      setTimeout(() => {
+        setLoaded(true)
+      }, 200)
+    }
+  }, [progress])
 
   useEffect(() => {
-    if (loaded) {
-      cameraChangeHandler('load')
+    if (loaded && cameraControlsRef.current) {
+      cameraControlsRef.current.dollyTo(10, true)
+      cameraControlsRef.current.rotateAzimuthTo(30 * DEG2RAD, true)
+      cameraControlsRef.current.rotatePolarTo(80 * DEG2RAD, true)
     }
   }, [loaded])
 
   useFrame(() => {
-    // cameraControlsRef.current?.moveTo(0, 0, -10, true)
-    // cameraControlsRef.current?.rotateAzimuthTo(160 * DEG2RAD, true)
-    // cameraControlsRef.current?.rotatePolarTo(60 * DEG2RAD, true)
-    // cameraControlsRef.current?.forward(1, true)
+    if (isRedraw) {
+      cameraChangeHandler(CAMERA_ANGLES[annotationIndex].annotation)
+    }
   })
 
   return (
     <>
-      <Suspense fallback={<Loader />}>
-        <Environment
-          files="https://cdn.jsdelivr.net/gh/Sean-Bradley/React-Three-Fiber-Boilerplate@environment/public/img/venice_sunset_1k.hdr"
-          background
-          blur={0.5}
-        />
-        <Houses2 />
-        <axesHelper args={[50]} />
-      </Suspense>
+      {/* <Suspense
+        fallback={
+          <Html fullscreen>
+            <Loading progress={progress} />
+          </Html>
+        }> */}
+      <Environment
+        files="https://cdn.jsdelivr.net/gh/Sean-Bradley/React-Three-Fiber-Boilerplate@environment/public/img/venice_sunset_1k.hdr"
+        background
+        blur={0.5}
+      />
+      <Houses2 />
       <Lights />
+      {/* </Suspense> */}
       <CameraControls
         ref={cameraControlsRef}
         distance={40}
@@ -102,10 +127,26 @@ const Scene = () => {
 }
 
 const SampleHouse = () => {
+  const [annotationIndex, setAnnotationIndex] = useState(0)
+  const [isRedraw, setIsRedraw] = useState(false)
+  const redrawHandler = () => {
+    setIsRedraw(false)
+  }
+
+  const annotationHandler = (idx: number) => {
+    setIsRedraw(true)
+    setAnnotationIndex(idx)
+  }
+
   return (
-    <Canvas shadows>
-      <Scene />
-    </Canvas>
+    <>
+      <MultiAnglePanel annotationHandler={annotationHandler} />
+      <div className="relative z-0 h-full">
+        <Canvas onPointerDown={redrawHandler} onWheel={redrawHandler} shadows>
+          <Scene isRedraw={isRedraw} annotationIndex={annotationIndex} />
+        </Canvas>
+      </div>
+    </>
   )
 }
 

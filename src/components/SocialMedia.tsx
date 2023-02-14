@@ -2,29 +2,29 @@ import { FaFacebook, MaterialSymbolsMail, PhInstagramLogo } from './icons'
 
 const SocialMedia = () => {
   return (
-    <ul className="absolute z-10 top-[4.5rem] flex flex-col gap-2 left-[1.1875rem] sm:bottom-[2.4375rem] sm:top-auto sm:right-[1.6875rem] sm:left-auto sm:flex-row">
+    <ul className="absolute top-[4.5rem] left-[1.1875rem] z-10 flex flex-col gap-2 sm:bottom-[2.4375rem] sm:top-auto sm:right-[1.6875rem] sm:left-auto sm:flex-row">
       <li>
         <a
           href="https://www.google.com.tw/?hl=zh_TW"
-          className="bg-black text-white p-2 block rounded-full"
+          className="block rounded-full bg-black p-2 text-white"
           target={'_blank'}>
-          <FaFacebook className="w-[1.125rem] h-[1.125rem]" />
+          <FaFacebook className="h-[1.125rem] w-[1.125rem]" />
         </a>
       </li>
       <li>
         <a
           href="https://www.google.com.tw/?hl=zh_TW"
-          className="bg-black text-white p-2 block rounded-full"
+          className="block rounded-full bg-black p-2 text-white"
           target={'_blank'}>
-          <PhInstagramLogo className="w-[1.125rem] h-[1.125rem]" />
+          <PhInstagramLogo className="h-[1.125rem] w-[1.125rem]" />
         </a>
       </li>
       <li>
         <a
           href="https://www.google.com.tw/?hl=zh_TW"
-          className="bg-black text-white p-2 block rounded-full"
+          className="block rounded-full bg-black p-2 text-white"
           target={'_blank'}>
-          <MaterialSymbolsMail className="w-[1.125rem] h-[1.125rem]" />
+          <MaterialSymbolsMail className="h-[1.125rem] w-[1.125rem]" />
         </a>
       </li>
     </ul>

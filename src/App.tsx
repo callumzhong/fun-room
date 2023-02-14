@@ -1,5 +1,6 @@
 import Layout from '@/components/Layout'
 import Home from '@/pages/Home'
+import { Suspense } from 'react'
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -11,9 +12,9 @@ import Room from './pages/Room'
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
-      <Route index element={<Home />} />
-      <Route path="room" element={<Room />} />
-    </Route>
+        <Route index element={<Home />} />
+        <Route path="room" element={<Room />} />
+      </Route>
   )
 )
 

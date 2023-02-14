@@ -1,0 +1,40 @@
+[
+  {
+    "type": "A",
+    "annotation": {
+      "move": {
+        "x": -2,
+        "y": 0,
+        "z": -2
+      },
+      "azimuthAngle": -30,
+      "polarAngle": 70,
+      "maxAzimuthAngle": 80,
+      "minAzimuthAngle": -80
+    },
+    "lookAt": {
+      "x": -5,
+      "y": 3,
+      "z": 3
+    }
+  },
+  {
+    "type": "B",
+    "annotation": {
+      "move": {
+        "x": 0,
+        "y": 4,
+        "z": -15
+      },
+      "azimuthAngle": 220,
+      "polarAngle": 70,
+      "maxAzimuthAngle": 240,
+      "minAzimuthAngle": 120
+    },
+    "lookAt": {
+      "x": -2,
+      "y": 5,
+      "z": -15
+    }
+  }
+]
