@@ -1,12 +1,7 @@
-import ImageRoom01 from '@/assets/room-1.png'
-import ImageRoom02 from '@/assets/room-2.png'
-import ImageRoom03 from '@/assets/room-3.png'
 import CustomSwiper from '@/components/CustomSwiper'
 import { ResponsiveImage } from '@/types'
 import PhotoSwipeLightbox from 'photoswipe/lightbox'
 import { useEffect } from 'react'
-
-const IMAGE_ROOM = [ImageRoom01, ImageRoom02, ImageRoom03]
 
 const RoomPhoto = ({ images }: { images: ResponsiveImage[] }) => {
   const id = 'A' + Math.floor(Math.random() * 1000) + 1
