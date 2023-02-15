@@ -1,16 +1,17 @@
 import useModal from '@/hooks/useModal'
 import Modal from 'react-modal'
-import { IconMenu } from './icons'
 
-// Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
-Modal.setAppElement('#react-modal')
+// // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
+Modal.setAppElement(document.getElementById('#root')!)
 
 const VariantModal = ({
   label,
+  onAfterClose,
   renderButton,
   renderContent
 }: {
   label: string
+  onAfterClose: () => void
   renderButton: (event: () => void) => React.ReactNode
   renderContent: (event: () => void) => React.ReactNode
 }) => {
@@ -20,21 +21,13 @@ const VariantModal = ({
     <>
       {renderButton(openModalHandler)}
       <Modal
-        shouldCloseOnOverlayClick={false}
+        onAfterClose={onAfterClose}
         isOpen={modalIsOpen}
         overlayClassName="fixed inset-0 bg-black bg-opacity-[0.78] z-20"
-        className="-mr-1/2 absolute top-[5%] left-[50%] h-max w-[min(66.16vw,49.625rem)] -translate-x-1/2 outline-none"
-        // style={customStyles}
+        className="absolute top-[5%] left-[50%] max-h-[90vh] w-[90vw] -translate-x-1/2 overflow-auto bg-[#F5F5F5] px-[1.6875rem] pb-14 pt-12 outline-none sm:w-[31.25rem] md:w-[40rem] lg:w-[50rem]"
         onRequestClose={closeModalHandler}
         contentLabel={label}>
-        <div className="h-full overflow-auto bg-[#F5F5F5] p-5">
-          {renderContent(closeModalHandler)}
-        </div>
-        <button
-          onClick={closeModalHandler}
-          className="group absolute top-0 -right-14 bg-white px-2 py-1 text-4xl hover:bg-gray-800">
-          <IconMenu isCollapsed={true} />
-        </button>
+        {renderContent(closeModalHandler)}
       </Modal>
     </>
   )

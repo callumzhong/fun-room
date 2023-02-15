@@ -12,7 +12,7 @@ type GLTFResult = {
 
 const Houses2 = (props: any) => {
   const { nodes, materials } = useGLTF(
-    './models/houses2_draco.glb'
+    '/models/houses2_draco.glb'
   ) as unknown as GLTFResult
   return (
     <group {...props} dispose={null}>
@@ -499,6 +499,6 @@ const Houses2 = (props: any) => {
   )
 }
 
-useGLTF.preload('./models/houses2_draco.glb')
+useGLTF.preload('/models/houses2_draco.glb')
 
 export default Houses2

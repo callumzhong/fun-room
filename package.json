@@ -9,15 +9,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-query-firebase/firestore": "^1.0.0-dev.7",
     "@react-three/drei": "9.56.17",
     "@react-three/fiber": "8.10.4",
     "@wojtekmaj/react-daterange-picker": "^4.2.0",
     "clsx": "^1.2.1",
+    "firebase": "^9.17.1",
     "leva": "^0.9.34",
     "photoswipe": "^5.3.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-modal": "^3.16.1",
+    "react-query": "^3.39.3",
     "react-router-dom": "^6.6.2",
     "react-transition-group": "^4.4.5",
     "swiper": "^8.4.5",

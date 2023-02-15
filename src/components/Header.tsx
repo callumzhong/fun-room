@@ -1,13 +1,17 @@
 import { ReactComponent as ImageLogo } from '@/assets/logo.svg'
-import { useId, useState } from 'react'
+import clsx from 'clsx'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { IconMenu } from './icons'
 
 const Header = () => {
-  const menuId = useId()
   const [isCollapsed, setIsCollapsed] = useState(false)
-  const collapsedHandler = () => {
-    setIsCollapsed((value) => !value)
+  const collapsedHandler = (value?: boolean) => {
+    if (typeof value === 'undefined') {
+      setIsCollapsed((state) => !state)
+      return
+    }
+    setIsCollapsed(value)
   }
 
   return (
@@ -15,36 +19,41 @@ const Header = () => {
       <nav className="container mx-auto flex flex-wrap justify-between">
         <h1 className="relative">
           <Link
+            onClick={() => collapsedHandler(false)}
             to="/"
             className="absolute inset-0 text-[0.25rem] text-transparent">
             FunRoom
           </Link>
           <ImageLogo className="h-[2.1563rem] w-[3.7813rem] sm:h-[4.3125rem] sm:w-[7.5625rem]" />
         </h1>
-        <label
+        <button
           className="cursor-pointer px-2 py-1 sm:hidden"
-          htmlFor={menuId}
-          onClick={collapsedHandler}>
+          onClick={() => collapsedHandler()}>
           <IconMenu isCollapsed={isCollapsed} />
-        </label>
-        <input
-          className="peer absolute -left-full"
-          id={menuId}
-          type="checkbox"
-        />
-        <ul className="flex h-0 basis-full flex-col gap-[0.9375rem] overflow-hidden py-0 duration-150 ease-in-out peer-checked:h-[15rem] sm:h-auto sm:basis-auto sm:flex-row sm:gap-12">
+        </button>
+        <ul
+          className={clsx(
+            'flex h-0 basis-full flex-col gap-[0.9375rem] overflow-hidden py-0 duration-150 ease-in-out sm:h-auto sm:basis-auto sm:flex-row sm:gap-12',
+            isCollapsed && 'h-6',
+            !isCollapsed && 'h-0'
+          )}>
           <li className="group flex h-full items-center justify-center">
-            <Link className="block sm:w-[2.9375rem]" to="/room?query=single">
+            <Link
+              className="block sm:w-[2.9375rem]"
+              to="/room/single"
+              onClick={() => collapsedHandler(false)}>
               <p className="group-hover:hidden">Single Room</p>
               <p className="hidden whitespace-nowrap group-hover:block">
                 單人房
               </p>
             </Link>
           </li>
-          <li className="group flex h-full items-center justify-center">
+          {/* TODO:後續補資料 */}
+          {/* <li className="group flex h-full items-center justify-center">
             <Link
+              onClick={() => collapsedHandler(false)}
               className="block sm:w-[5.875rem]"
-              to="/room?query=deluxe-single">
+              to="/room/deluxe-single">
               <p className="group-hover:hidden">Deluxe Single Room</p>
               <p className="hidden whitespace-nowrap group-hover:block">
                 豪華單人房
@@ -52,7 +61,10 @@ const Header = () => {
             </Link>
           </li>
           <li className="group flex h-full items-center justify-center">
-            <Link className="block sm:w-[3.0625rem]" to="/room?query=double">
+            <Link
+              className="block sm:w-[3.0625rem]"
+              to="/room/double"
+              onClick={() => collapsedHandler(false)}>
               <p className="group-hover:hidden">Double Room</p>
               <p className="hidden whitespace-nowrap group-hover:block">
                 雙人房
@@ -61,8 +73,9 @@ const Header = () => {
           </li>
           <li className="group flex h-full items-center justify-center">
             <Link
+              onClick={() => collapsedHandler(false)}
               className="block sm:w-[6.25rem]"
-              to="/room?query=deluxe-double">
+              to="/room/deluxe-double">
               <p className="group-hover:hidden">Deluxe Double Room</p>
               <p className="hidden whitespace-nowrap group-hover:block">
                 豪華雙人房
@@ -70,7 +83,10 @@ const Header = () => {
             </Link>
           </li>
           <li className="group flex h-full items-center justify-center">
-            <Link className="block sm:w-[2.6875rem]" to="/room?query=twin">
+            <Link
+              className="block sm:w-[2.6875rem]"
+              to="/room/twin"
+              onClick={() => collapsedHandler(false)}>
               <p className="group-hover:hidden">Twin Room</p>
               <p className="hidden whitespace-nowrap group-hover:block">
                 雙床房
@@ -78,13 +94,16 @@ const Header = () => {
             </Link>
           </li>
           <li className="group flex h-full items-center justify-center">
-            <Link className="block sm:w-[5rem]" to="/room?query=deluxe">
+            <Link
+              className="block sm:w-[5rem]"
+              to="/room/deluxe-twin"
+              onClick={() => collapsedHandler(false)}>
               <p className="group-hover:hidden">Deluxe Twin Room</p>
               <p className="hidden whitespace-nowrap group-hover:block">
                 豪華雙床房
               </p>
             </Link>
-          </li>
+          </li> */}
         </ul>
       </nav>
     </header>
