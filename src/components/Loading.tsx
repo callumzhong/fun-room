@@ -66,12 +66,14 @@ const WavePercent = forwardRef(
 const Loading = ({ progress }: { progress: number }) => {
   const [inProp, setInProp] = useState(false)
   const divRef = useRef<HTMLDivElement>(null)
+
   useEffect(() => {
     setInProp(true)
     if (progress === 100) {
       setInProp(false)
     }
   }, [progress])
+
   return (
     <>
       {createPortal(

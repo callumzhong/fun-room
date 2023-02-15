@@ -5,7 +5,6 @@ import {
   FaSolidChild,
   FaSolidCouch,
   FaSolidHeadset,
-  FaSolidMountain,
   FaSolidPhoneAlt,
   FaSolidSmokingBan,
   FaSolidUtensils,
@@ -13,25 +12,50 @@ import {
   IconFridge
 } from '@/components/icons'
 import RoomCost from '@/components/Room/RoomCost'
-import RoomEvaluationModal from './RoomEvaluationModal'
+import { HighlightedRoomAmenity, Room } from '@/types'
 
-const RoomIntroduce = () => {
+const renderRoomAmenitiesIcon = (state: HighlightedRoomAmenity) => {
+  switch (state.type) {
+    case 'INTERNET':
+      return <Fa6SolidWifi className="mx-auto mb-1 h-[1.125rem]" />
+    case 'BREAKFAST':
+      return <FaSolidUtensils className="mx-auto mb-1 h-[1.125rem]" />
+    case 'MINI_BAR':
+      return <FaSolidWineGlassAlt className="mx-auto mb-1 h-[1.125rem]" />
+    case 'ROOM_SERVICE':
+      return <FaSolidHeadset className="mx-auto mb-1 h-[1.125rem]" />
+    case 'PHONE':
+      return <FaSolidPhoneAlt className="mx-auto mb-1 h-[1.125rem]" />
+    case 'PETS':
+      return <FaSolidCat className="mx-auto mb-1 h-[1.125rem]" />
+    case 'REFRIGERATOR':
+      return <IconFridge className="mx-auto mb-1 h-[1.125rem]" />
+    case 'SOFA':
+      return <FaSolidCouch className="mx-auto mb-1 h-[1.125rem]" />
+    case 'NO_SMOKING':
+      return <FaSolidSmokingBan className="mx-auto mb-1 h-[1.125rem]" />
+    case 'PARENT_CHILD':
+      return <FaSolidChild className="mx-auto mb-1 h-[1.125rem]" />
+    case 'AIR_CONDITIONER':
+      return <FaRegularSnowflake className="mx-auto mb-1 h-[1.125rem]" />
+  }
+}
+
+const RoomIntroduce = ({ room }: { room: Room }) => {
+  const { roomFeatures, roomFacilities, displayNameEN } = room
   return (
     <>
       <div className="mb-[1.3406rem] flex justify-between gap-[2.0625rem] py-6">
-        <div className="flex flex-1 justify-between">
-          <h2 className="w-[11.4375rem] self-end font-abhaya-libre text-3xl md:basis-auto">
-            Deluxe Double Room
-          </h2>
-          <RoomEvaluationModal buttonClassName="hidden md:block" />
-        </div>
-        <RoomCost className="basis-1/3 flex-col md:hidden" />
+        <h2 className="w-[11.4375rem] self-end font-abhaya-libre text-3xl md:basis-auto">
+          {displayNameEN}
+        </h2>
+        <RoomCost
+          data={roomFeatures.displayableRates}
+          className="basis-1/3 flex-col md:hidden"
+        />
       </div>
       <p className="mb-[1.9375rem] break-all text-sm text-[#656565]">
-        Single Room is only reserved for one guest. There is a bedroom with a
-        single size bed and a private bathroom. Everything you need prepared for
-        you: sheets and blankets, towels, soap and shampoo, hairdryer are
-        provided. In the room there is AC and of course WiFi.
+        {roomFacilities}
       </p>
       <div className="mb-[1.5625rem] flex">
         <div className="flex flex-1 flex-wrap">
@@ -43,10 +67,10 @@ const RoomIntroduce = () => {
             <p>房間太小</p>
           </div>
           <div className="inline-flex w-1/2 flex-col gap-2 text-sm">
-            <p>1</p>
-            <p>單人床</p>
-            <p>1</p>
-            <p>18平方公尺</p>
+            <p>{roomFeatures.guestLimit}</p>
+            <p>{roomFeatures.beddingOption}</p>
+            <p>{roomFeatures.bathroomNumber}</p>
+            <p>{roomFeatures.roomSquare} 平方公尺</p>
           </div>
         </div>
         <div className="flex-1">
@@ -62,55 +86,13 @@ const RoomIntroduce = () => {
         </div>
       </div>
       <h3 className="mb-6 font-medium">客房設施</h3>
-      <div className="mb-8 flex flex-wrap gap-8 text-sm">
-        <div>
-          <Fa6SolidWifi className="mx-auto mb-1 h-[1.125rem]" />
-          <p>wifi</p>
-        </div>
-        <div>
-          <FaSolidUtensils className="mx-auto mb-1 h-[1.125rem]" />
-          <p>早餐</p>
-        </div>
-        <div>
-          <FaSolidWineGlassAlt className="mx-auto mb-1 h-[1.125rem]" />
-          <p>Mini Bar</p>
-        </div>
-        <div>
-          <FaSolidHeadset className="mx-auto mb-1 h-[1.125rem]" />
-          <p>Room Service</p>
-        </div>
-        <div>
-          <FaSolidPhoneAlt className="mx-auto mb-1 h-[1.125rem]" />
-          <p>電話</p>
-        </div>
-        <div>
-          <IconFridge className="mx-auto mb-1 h-[1.125rem]" />
-          <p>冰箱</p>
-        </div>
-        <div>
-          <FaSolidCouch className="mx-auto mb-1 h-[1.125rem]" />
-          <p>沙發</p>
-        </div>
-        <div>
-          <FaSolidMountain className="mx-auto mb-1 h-[1.125rem]" />
-          <p>View</p>
-        </div>
-        <div>
-          <FaSolidSmokingBan className="mx-auto mb-1 h-[1.125rem]" />
-          <p>禁止吸煙</p>
-        </div>
-        <div>
-          <FaSolidChild className="mx-auto mb-1 h-[1.125rem]" />
-          <p>適合兒童</p>
-        </div>
-        <div>
-          <FaRegularSnowflake className="mx-auto mb-1 h-[1.125rem]" />
-          <p>空調</p>
-        </div>
-        <div>
-          <FaSolidCat className="mx-auto mb-1 h-[1.125rem]" />
-          <p>寵物攜帶</p>
-        </div>
+      <div className="mb-8 flex flex-wrap gap-6 text-sm">
+        {roomFeatures.highlightedRoomAmenities.map((amenity, idx) => (
+          <div key={idx} className="w-14 text-center">
+            {renderRoomAmenitiesIcon(amenity)}
+            <p>{amenity.name}</p>
+          </div>
+        ))}
       </div>
     </>
   )

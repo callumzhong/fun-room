@@ -1,3 +1,4 @@
+import { ResponsiveImage } from '@/types'
 import clsx from 'clsx'
 import { useRef, useState } from 'react'
 import SwiperClass from 'swiper'
@@ -23,7 +24,7 @@ const Buttons = ({
   return (
     <div
       className={clsx(
-        'absolute left-[1.125rem] bottom-[2.4375rem] z-10 flex items-center gap-3',
+        'absolute inset-x-0 z-10 mx-auto flex w-max items-center gap-3',
         className
       )}>
       <button
@@ -39,8 +40,9 @@ const Buttons = ({
           <div
             key={idx}
             className={clsx(
-              'h-[0.375rem] w-[0.375rem] rounded-full bg-white',
-              activeIndex === idx && 'bg-black'
+              'h-[0.375rem] w-[0.375rem] rounded-full',
+              activeIndex === idx && 'bg-black',
+              activeIndex !== idx && 'bg-white'
             )}
           />
         )
@@ -65,7 +67,7 @@ const CustomSwiper = ({
   buttonLeftClassName,
   buttonRightClassName
 }: {
-  images: Array<string>
+  images: ResponsiveImage[]
   imagesClassName: string
   className?: string
   buttonsClassName: string
@@ -92,7 +94,7 @@ const CustomSwiper = ({
         }}>
         {images.map((image, idx) => (
           <SwiperSlide key={idx}>
-            <img src={image} className={imagesClassName} alt="" />
+            <img src={image.mediumUrl} className={imagesClassName} alt="" />
           </SwiperSlide>
         ))}
       </Swiper>
