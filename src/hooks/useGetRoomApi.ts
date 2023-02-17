@@ -1,8 +1,5 @@
 import { firestore } from '@/configs/firebase'
-import {
-  useFirestoreInfiniteQuery,
-  useFirestoreQuery
-} from '@react-query-firebase/firestore'
+import { useFirestoreQuery } from '@react-query-firebase/firestore'
 import { collection, query, where } from 'firebase/firestore'
 import { Room } from '../types'
 

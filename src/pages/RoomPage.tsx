@@ -62,7 +62,6 @@ const RoomPage = () => {
             className="hidden md:mt-[6.5rem] md:flex"
           />
           <GeneratorSeller />
-          {/* <RoomForm /> */}
         </div>
       </div>
     </div>
