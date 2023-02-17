@@ -1,4 +1,3 @@
-// import rooms from '@/apis/rooms'
 import GuideText from '@/components/GuideText'
 import Loading from '@/components/Loading'
 import SampleHouse from '@/components/SampleHouse'
