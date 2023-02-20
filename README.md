@@ -6,6 +6,7 @@ Fun Room
 ## Technologies
 
 - React
+- TypeScript
 - React Query
 - React Three Fiber
 - React Router
